@@ -1,10 +1,8 @@
-const express = require("express");
+const fs = require("fs");
 
-const app = express();
-
-app.get("/", function(request, response) {
-    console.log("Hello");
-    response.end("Hello from express12")
-});
-
-app.listen(3000);
+let fileContent = fs.readFileSync("hello.txt", "utf8");
+let arr = Array.from(fileContent);
+arr = arr.map((value) => value*2 );
+fs.writeFileSync("hello.txt", "arr");
+let data = fs.readFileSync("hello.txt", "utf8");
+console.log(data);

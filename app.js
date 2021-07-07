@@ -1,8 +1,10 @@
-const os = require("os");
-// const gretting = require("./gretting");
+// const os = require("os");
+const gretting = require("./gretting");
 // const User = require("./user");
-const welcome = require("./welcome");
+// const welcome = require("./welcome");
 
-welcome.getMorningMessage();
-welcome.getEveningMessage();
 
+global.name = "Eugene";
+
+global.console.log(date);
+console.log(gretting.getMessage());

@@ -1,6 +1,8 @@
 const os = require("os");
 // const gretting = require("./gretting");
-const User = require("./user");
+// const User = require("./user");
+const welcome = require("./welcome");
 
-let eugene = new User("Eugene", 32);
-eugene.sayHi();
+welcome.getMorningMessage();
+welcome.getEveningMessage();
+

@@ -1,18 +1,22 @@
-let http = require("http");
-
-http.createServer(function(request, response) {
-    
-    if(request.url === "/home" || request.url === "/"){
-        response.write("<h2>Home</h2>");
-    }
-    else if(request.url == "/about"){
-        response.write("<h2>About</h2>");
-    }
-    else if(request.url == "/contact"){
-        response.write("<h2>Contacts</h2>");
-    }
-    else{
-        response.write("<h2>Not found</h2>");
-    }
-    response.end();
-}).listen(3000);
+const http = require("http");
+const fs = require("fs");
+  
+http.createServer(function(request, response){
+      
+    console.log(`Запрошенный адрес: ${request.url}`);
+    // получаем путь после слеша
+    const filePath = request.url.substr(1);
+    // смотрим, есть ли такой файл
+    fs.access(filePath, fs.constants.R_OK, err => {
+        // если произошла ошибка - отправляем статусный код 404
+        if(err){
+            response.statusCode = 404;
+            response.end("Resourse not found!");
+        }
+        else{
+            fs.createReadStream('some.txt').pipe(response);
+        }
+      });
+}).listen(3000, function(){
+    console.log("Server started at 3000");
+});
